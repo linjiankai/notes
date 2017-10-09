@@ -1,0 +1,42 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>jQuery插件防冲突</title>  
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.js"></script>  
+</head>  
+<body>  
+    <input id="btn" type="button" value="按钮" />  
+    <script type="text/javascript">  
+        +(function($){  
+            $.fn.ct=function(){  
+                console.log("自定义冲突插件");  
+            }  
+        })(jQuery);  
+        +(function($){  
+            var old=$.fn.ct;//保存可能冲突的重名函数  
+            var old2=$.fn.ct2;  
+            $.fn.ct2=$.fn.ct=function(){  
+                console.log("自定义第二个冲突插件");  
+            }  
+            //防冲突主体函数  
+            $.fn.ct.noConflict=function(){  
+                if(old){  
+                    $.fn.ct=old;  
+                }else if(old&&old2){  
+                    $.fn.ct=old;  
+                    $.fn.ct2=old2;  
+                }  
+                return this;  
+            }  
+        })(jQuery);  
+  
+  
+        $(function(){  
+            $.fn.ct.noConflict();  
+            $('#btn').ct();  
+            $('#btn').ct2();  
+        });  
+    </script>  
+</body>  
+</html> 

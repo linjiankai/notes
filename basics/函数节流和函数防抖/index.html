@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<style>
+    .demo{width:200px;height:200px;border:1px solid red;overflow-y:scroll;margin-top:50px;}
+	.scroll{height:5000px;}
+</style>
+<body>
+    <div id="normal" class="demo">
+        普通滚动
+        <div class="scroll"></div>
+    </div>
+    <div id="throttle" class="demo">
+        函数节流
+        <div class="scroll"></div>
+    </div>
+    <div id="debounce" class="demo">
+        函数防抖
+        <div class="scroll"></div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>

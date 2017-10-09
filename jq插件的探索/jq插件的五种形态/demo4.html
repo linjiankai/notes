@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+(function ($) {
+    var Plugin = function (element, options) {
+        this.element = element;
+        this.options = options;
+    };
+    Plugin.prototype = {
+        create: function () {
+            console.log(this.element);
+            console.log(this.options);
+        }
+    };
+    $.fn.pluginName = function (options) {
+        // 合并参数
+        return this.each(function () {
+            // 在这里编写相应的代码进行处理
+            var ui = $._data(this, "pluginName");
+            // 如果该元素没有初始化过(可能是新添加的元素), 就初始化它.
+            if (!ui) {
+                var opts = $.extend(true, {}, $.fn.pluginName.defaults, typeof options === "object" ? options : {});
+                ui = new Plugin(this, opts);
+                // 缓存插件
+                $._data(this, "pluginName", ui);
+            }
+            // 调用方法
+            if (typeof options === "string" && typeof ui[options] == "function") {
+                // 执行插件的方法
+                ui[options].apply(ui, args);
+            }
+        });
+    };
+    $.fn.pluginName.defaults = {
+    	text: null
+    };
+})(jQuery);
+// 调用的方式和之前一样。
+</script>
+<script>
+$("#div").pluginName({
+	text: 'hello'
+});
+</script>
+</html>

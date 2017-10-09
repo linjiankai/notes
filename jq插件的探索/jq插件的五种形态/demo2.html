@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+;(function($){
+    $.fn.pluginName = function(options) {
+        // 合并参数，通过“extend”合并默认参数和自定义参数
+        var args = $.extend({}, $.fn.pluginName.defaults, options);
+        return this.each(function() {
+            console.log(args);
+        });
+    };
+    // 默认参数
+    $.fn.pluginName.defaults = {
+        text : "hello"
+    };
+})(jQuery);
+</script>
+<script>
+ 	$("#div").pluginName({
+ 		text: "hello world!"
+ 	});
+</script>
+</html>

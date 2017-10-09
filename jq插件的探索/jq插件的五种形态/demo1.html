@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	;(function ($) {
+	    // 扩展这个方法到jQuery.
+	    // $.extend() 是把方法扩展到 $ 对象上，和 $.fn.extend 不同。 扩展到 $.fn.xxx 上后，
+	    // 调用的时候就可以是 $(selector).xxx()
+	    $.fn.extend({
+	        // 插件名字
+	        pluginName: function () {
+	        	console.log(this)
+	            // 遍历匹配元素的集合
+	            // 注意这里有个"return"，作用是把处理后的对象返回，实现链式操作
+	            return this.each(function () {
+	                // 在这里编写相应的代码进行处理
+	            });
+	        }
+	    });
+	// 传递jQuery到内层作用域去, 如果window,document用的多的话, 也可以在这里传进去.
+	// })(jQuery, window, document, undefined);
+	})(jQuery, undefined);
+</script>
+<script>
+ 	$("#div").pluginName();
+</script>
+</html>
